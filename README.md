@@ -1,4 +1,4 @@
 ui-highcharts
 =============
 
-Another one AngularJS directive for Highcharts
+Angular way to use Highcharts
