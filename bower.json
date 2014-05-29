@@ -1,0 +1,21 @@
+{
+    "name": "ui-highcharts",
+    "version": "0.0.1",
+    "homepage": "https://github.com/gevgeny/ui-highcharts",
+    "authors": [
+        "Eugene Gluhotorenko"
+    ],
+    "description": "Angular way to use Highcharts",
+    "main": "src/ui-highcharts.js",
+    "keywords": [
+        "angular", "highcharts"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*", "node_modules", "bower_components", "test", "tests"
+    ],
+    "devDependencies": {
+        "jquery": "2.1.1",
+        "highstock-release": "v2.0.1"
+    }
+}
