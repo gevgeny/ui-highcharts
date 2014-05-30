@@ -6,7 +6,7 @@
         "Eugene Gluhotorenko"
     ],
     "description": "Angular way to use Highcharts",
-    "main": "src/ui-highcharts.js",
+    "main": "dist/ui-highcharts.js",
     "keywords": [
         "angular", "highcharts"
     ],

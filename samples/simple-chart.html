@@ -3,10 +3,17 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/highstock-release/highstock.js"></script>
-    <script src="../src/ui-highcharts.js"></script>
+
+    <script src="../src/bootstrap.js"></script>
+    <script src="../src/utils.service.js"></script>
+    <script src="../src/watchHelper.service.js"></script>
+    <script src="../src/formatter.service.js"></script>
+    <script src="../src/directive.js"></script>
+
     <script>
         angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
             $scope.data = [{
@@ -19,7 +26,9 @@
 <body>
     <div ng-controller="ctrl">
         <ui-chart type="Chart" series="data">
-            <span>sdf</span>
+            <tooltip>
+                <span>{{ point.y | number:0 }} %</span>
+            </tooltip>
         </ui-chart>
     </div>
 </body>
