@@ -1,0 +1,19 @@
+{
+    "curly": true,
+    "latedef": true,
+    "newcap": true,
+    "eqnull": true,
+    "eqeqeq": true,
+    "undef": true,
+    "expr": true,
+    "freeze": true,
+    "indent": 4,
+    "browser": true,
+    "debug": true,
+    "jquery": true,
+    "devel": true,
+    "globals": {
+        "Highcharts": true,
+        "angular": true
+    }
+}

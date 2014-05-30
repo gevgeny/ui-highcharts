@@ -136,9 +136,9 @@ angular.module('ui-highcharts').service('_uiHighchartsUtilsService', function ()
             clearTimeout(timeout);
             timeout = setTimeout(function() {
                 timeout = null;
-                if (!immediate) func.apply(context, args);
+                if (!immediate) { func.apply(context, args); }
             }, wait);
-            if (immediate && !timeout) func.apply(context, args);
+            if (immediate && !timeout) { func.apply(context, args); }
         };
     };
 
@@ -266,13 +266,6 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
     };
 }]);
 !function () {
-
-    var createDefaultOptions = function ($element) {
-        return {
-            chart : { renderTo : $element[0] }
-        };
-    };
-
     var createDirective = function (type) {
         return [ '_uiHighchartsWatchHelperService',  '_uiHighchartsFormatterService', '_uiHighchartsExtensionsService',
             function (watchHelper, formatter, extensions) {

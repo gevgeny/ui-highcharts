@@ -1,11 +1,4 @@
 !function () {
-
-    var createDefaultOptions = function ($element) {
-        return {
-            chart : { renderTo : $element[0] }
-        };
-    };
-
     var createDirective = function (type) {
         return [ '_uiHighchartsWatchHelperService',  '_uiHighchartsFormatterService', '_uiHighchartsExtensionsService',
             function (watchHelper, formatter, extensions) {
