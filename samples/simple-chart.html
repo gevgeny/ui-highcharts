@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-
+</head>
+<body>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/highstock-release/highstock.js"></script>
 
     <script src="../dist/ui-highcharts.js"></script>
-
     <script>
         angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
             $scope.data = [{
@@ -22,9 +20,7 @@
             };
         });
     </script>
-</head>
-<body>
-    <div ng-controller="ctrl">
+    <div ng-app="myApp" ng-controller="ctrl">
         <ui-chart series="data" title="Sample Chart" subtitle="with powers of two">
             <tooltip>
                 <span>Power of {{ log2(point.y) }} is {{ point.y }}</span>

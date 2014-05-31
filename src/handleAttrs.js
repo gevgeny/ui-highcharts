@@ -29,10 +29,10 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
         }
     };
     
-    var addPointEvent = function ($scope, attr, event) {
+    var addPointEvent = function ($scope, $attrs, attr, event) {
         var plotOptions ;
 
-        if (!$scope[attr]) {
+        if (!$attrs[attr]) {
             return;
         }
         plotOptions = { series: { point : { events: { } } } };
@@ -104,14 +104,15 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
         addTitle($scope, $attrs);
         addSubtitle($scope, $attrs);
         addType($scope, $attrs);
+
         // series events
         addLegendItemClick($scope, $attrs);
 
         // point events
-        addPointEvent($scope, 'pointClick', 'click');
-        addPointEvent($scope, 'pointSelect', 'select');
-        addPointEvent($scope, 'pointUnselect', 'unselect');
-        addPointEvent($scope, 'pointMouseout', 'mouseOut');
-        addPointEvent($scope, 'pointMousemove', 'mouseMove');
+        addPointEvent($scope, $attrs, 'pointClick', 'click');
+        addPointEvent($scope, $attrs, 'pointSelect', 'select');
+        addPointEvent($scope, $attrs, 'pointUnselect', 'unselect');
+        addPointEvent($scope, $attrs, 'pointMouseout', 'mouseOut');
+        addPointEvent($scope, $attrs, 'pointMousemove', 'mouseMove');
     };
 }]);

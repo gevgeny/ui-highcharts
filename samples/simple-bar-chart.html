@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
 
+
+</head>
+<body>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/highstock-release/highstock.js"></script>
@@ -16,20 +19,10 @@
                 name: 'Powers of two',
                 data: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
             }];
-
-            $scope.log2 = function (value) {
-                return Math.log(value) / Math.LN2;
-            };
         });
     </script>
-</head>
-<body>
-    <div ng-controller="ctrl">
-        <ui-chart series="data" type="bar" title="Sample Chart" subtitle="with powers of two">
-            <tooltip>
-                <span>Power of {{ log2(point.y) }} is {{ point.y }}</span>
-            </tooltip>
-        </ui-chart>
+    <div ng-app="myApp" ng-controller="ctrl">
+        <ui-chart type="bar" series="data"  title="Bar chart"/>
     </div>
 </body>
 </html>

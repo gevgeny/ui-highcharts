@@ -1,0 +1,29 @@
+Directives: Chart, StockChart, Map
+
+attrs: | attr | description | default value | highcharts equivalent | example |
+
+    series
+
+    option
+
+    title
+    subtitle
+    legendItemClick
+    pointClick
+
+    start/end
+    trackTooltip
+
+formatters:
+x-axis-label
+y-axis-label
+tooltip
+
+watchers:
+
+
+TODO:
+<x-axis-label title="X axis">
+type
+
+
