@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/highstock-release/highstock.js"></script>
+
+    <script src="../dist/ui-highcharts.js"></script>
+
+    <script>
+        angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
+            $scope.data = [{
+                name: 'percent values',
+                data: [1.34, 22.3, 4.4, 8.55, 16.1, 3.2, 6.4]
+            }];
+        });
+    </script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="ctrl">
+        <ui-chart series="data" title="Sample Chart" subtitle="with percent values">
+            <tooltip>
+                <span>value is {{ point.y | number:0 }}%</span>
+            </tooltip>
+        </ui-chart>
+    </div>
+</body>
+</html>
+
