@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/highstock-release/highstock.js"></script>
+
+    <script src="../dist/ui-highcharts.js"></script>
+
+    <script>
+        angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
+            $scope.data = [
+                { name: 'Powers of two', data: [0, 1, 2, 4, 8, 16, 32] },
+                { name: 'Fibonacci Numbers',data: [1, 1, 2, 3, 5, 8, 13, 21]
+            }];
+            $scope.events = [];
+            $scope.click = function (point) {
+                $scope.events.push({ type : 'click', point : point.y, series: point.series.name });
+            };
+            $scope.mouseover = function (point) {
+                $scope.events.push({ type : 'mouseover', point : point.y, series: point.series.name });
+            };
+            $scope.mouseout = function (point) {
+                $scope.events.push({ type : 'mouseout', point : point.y, series: point.series.name });
+            };
+            $scope.select = function (point) {
+                $scope.events.push({ type : 'select', point : point.y, series: point.series.name });
+            };
+            $scope.unselect = function (point) {
+                $scope.events.push({ type : 'unselect', point : point.y, series: point.series.name });
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="ctrl">
+        <ui-chart series="data" options="options"
+                  point-click="click(point)"
+                  point-mouseover="mouseover(point)"
+                  point-mouseout="mouseout(point)"
+                  point-select="select(point)"
+                  point-unselect="unselect(point)">
+        </ui-chart>
+        <ul>
+            <li ng-repeat="event in events">
+                <span>Event: {{ event.type }} Point: {{ event.point }} Series: {{ event.series }}</span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

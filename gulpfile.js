@@ -5,10 +5,10 @@ var gulp = require('gulp'),
 
 gulp.task('default', function() {
     gulp.src(['src/bootstrap.js',
-        'src/extensions.service.js',
-        'src/formatter.service.js',
-        'src/utils.service.js',
-        'src/watchHelper.service.js',
+        'src/addWatchers.js',
+        'src/handleAttrs.js',
+        'src/interpolateFormatters.js',
+        'src/utils.js',
         'src/directive.js'
     ])
     .pipe(jshint())

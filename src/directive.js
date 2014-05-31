@@ -1,7 +1,7 @@
 !function () {
     var createDirective = function (type) {
-        return [ '_uiHighchartsWatchHelperService',  '_uiHighchartsFormatterService', '_uiHighchartsExtensionsService',
-            function (watchHelper, formatter, extensions) {
+        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolateFormatters', '$uiHighchartsHandleAttrs',
+            function (addWatchers, interpolateFormatters, handleAttrs) {
                 return {
                     restrict: 'EAC',
                     transclude: true,
@@ -15,26 +15,20 @@
                         start: '=',
                         end: '=',
                         pointClick: '&',
+                        pointSelect: '&',
+                        pointUnselect: '&',
+                        pointMouseout: '&',
+                        pointMousemove: '&',
                         legendItemClick: '&'
                     },
                     link: function ($scope, $element, $attrs, $ctrl, $transclude) {
-                        var defaultOptions = { chart : { renderTo : $element[0] } },
-                            optionsWithFormatters = formatter.applyFormatters($scope, $transclude),
-                            chart;
+                        var chart;
 
-                        $scope.options = $scope.options || {};
-
-                        $.extend(true, $scope.options, optionsWithFormatters, defaultOptions);
+                        $scope.options = $.extend(true, $scope.options, { chart : { renderTo : $element[0] } });
+                        interpolateFormatters($scope, $transclude());
+                        handleAttrs($scope, $attrs);
                         chart = new Highcharts[type]($scope.options);
-
-                        watchHelper.watchSeriesLength(chart, $scope);
-                        watchHelper.watchChartRedraw(chart, $scope, $attrs);
-                        watchHelper.watchDisabling(chart, $scope);
-                        watchHelper.watchLoading(chart, $scope);
-                        watchHelper.watchAxis(chart, $scope, 'xAxis');
-                        watchHelper.watchAxis(chart, $scope, 'yAxis');
-
-                        extensions.addLegendHover(chart, $element, $attrs);
+                        addWatchers(chart, $scope, $attrs);
                     }
                 };
         }];
@@ -43,5 +37,5 @@
     angular.module('ui-highcharts')
         .directive('uiChart', createDirective('Chart'))
         .directive('uiStockChart', createDirective('StockChart'))
-        .directive('uiMap', createDirective('Chart'));
+        .directive('uiMap', createDirective('Map'));
 }();

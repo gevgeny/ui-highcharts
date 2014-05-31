@@ -1,4 +1,4 @@
-angular.module('ui-highcharts').service('_uiHighchartsUtilsService', function () {
+angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function () {
     /**
      * Debounce function by David Walsh (http://davidwalsh.name/javascript-debounce-function)
      * */

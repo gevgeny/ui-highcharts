@@ -25,7 +25,7 @@
 </head>
 <body>
     <div ng-controller="ctrl">
-        <ui-chart series="data" title="Sample Chart" subtitle="with powers of two">
+        <ui-chart series="data" type="bar" title="Sample Chart" subtitle="with powers of two">
             <tooltip>
                 <span>Power of {{ log2(point.y) }} is {{ point.y }}</span>
             </tooltip>

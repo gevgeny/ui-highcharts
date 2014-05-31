@@ -1,4 +1,4 @@
-angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_uiHighchartsUtilsService', function (utils) {
+angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighchartsUtilsService', function (utils) {
     /**
      * Determine which series were added to the scope and add them to the chart.
      * */
@@ -36,7 +36,7 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
     /**
      * Adds watcher for "series.length". We don't watch series deeply by performance reasons.
      * */
-    this.watchSeriesLength = function (chart, $scope) {
+    var watchSeriesLength = function (chart, $scope) {
         $scope.$watch('series.length', function (newLength, oldLength) {
             if (newLength === undefined) {
                 return;
@@ -49,7 +49,7 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
         });
     };
 
-    this.watchDisabling = function (chart, $scope) {
+    var watchDisabling = function (chart, $scope) {
         $scope.$watch(function () {
             return ($scope.series || []).map(function (value) { return value.disabled; });
         }, function (disableFlags) {
@@ -74,7 +74,7 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
     /**
      * Adds deep watcher for the "redraw" attr.
      * */
-    this.watchChartRedraw = function (chart, $scope, $attrs) {
+    var watchChartRedraw = function (chart, $scope, $attrs) {
         $attrs.redraw && $scope.$watch('redraw', function(newVal) {
             if (newVal === undefined) {
                 return;
@@ -86,7 +86,7 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
     /**
      * Adds watcher for the "loading" attr.
      * */
-    this.watchLoading = function (chart, $scope) {
+    var watchLoading = function (chart, $scope) {
         $scope.$watch('loading', function (loading) {
             if (loading) {
                 chart.showLoading();
@@ -96,7 +96,7 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
         });
     };
 
-    this.watchAxis = function (chart, $scope, axis) {
+    var watchAxis = function (chart, $scope, axis) {
         var axisOptions;
         $scope.$watch('options.' + axis, function (value, oldValue) {
             if (!value || value === oldValue) {
@@ -108,5 +108,14 @@ angular.module('ui-highcharts').service('_uiHighchartsWatchHelperService', ['_ui
                 axis.update(axisOptions[i]);
             });
         }, true);
+    };
+
+    return function (chart, $scope, $attrs) {
+        watchSeriesLength(chart, $scope);
+        watchChartRedraw(chart, $scope, $attrs);
+        watchDisabling(chart, $scope);
+        watchLoading(chart, $scope);
+        watchAxis(chart, $scope, 'xAxis');
+        watchAxis(chart, $scope, 'yAxis');
     };
 }]);
