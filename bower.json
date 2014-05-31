@@ -5,7 +5,7 @@
     "authors": [
         "Eugene Gluhotorenko"
     ],
-    "description": "Highcharts powered chart directives for Angular",
+    "description": "Highcharts powered charts directives for Angular",
     "main": "dist/ui-highcharts.js",
     "keywords": [
         "angular", "highcharts"
