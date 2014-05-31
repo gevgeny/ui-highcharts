@@ -39,7 +39,7 @@ Add one of ui-highcharts directives to your html under the defined controller
 ui-highcharts provides 3 directives.
 
 | HTML tag      | Example | Highcharts equivalent |
-| ------------- |:-------:| ---------------------:|
+| ------------- |:-------:| ----------------------|
 | `<ui-chart>`  | [jsfiddle](http://jsfiddle.net/gevgeny/Mgm56/) | [Highcharts Demo](http://www.highcharts.com/demo) |
 | `<ui-stock-chart>` | | [Highstock Demo](http://www.highcharts.com/stock/demo) |
 | `<ui-map` |  | [Highmaps demo](http://www.highcharts.com/maps/demo) |
