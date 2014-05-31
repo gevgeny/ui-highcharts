@@ -4,12 +4,13 @@
 
 </head>
 <body>
+    <div ng-app="myApp" ng-controller="ctrl">
+        <ui-chart series="data" options="options" legend-item-click="legendItemClick(series)" />
+    </div>
     <script src="jquery.js"></script>
     <script src="angular.js"></script>
     <script src="highstock.src.js"></script>
-
     <script src="ui-highcharts.js"></script>
-
     <script>
         angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
             $scope.data = [{
@@ -32,8 +33,5 @@
 
         });
     </script>
-    <div ng-app="myApp" ng-controller="ctrl">
-        <ui-chart series="data" options="options" legend-item-click="legendItemClick(series)" />
-    </div>
 </body>
 </html>
