@@ -50,9 +50,9 @@ Highcharts features provided in the directive through set of attributes.
 | Attribute             | Type     | Description                                   | Example                                           | Highcharts equivalent |
 | ----------------------|----------|-----------------------------------------------|---------------------------------------------------|-----------------------|
 | `options`             | `object` | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined through `series` attribute           | [jsfiddle](http://jsfiddle.net/gevgeny/8zBJL/)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
-| `type`                | `string` | The default series type for the chart.        | [jsfiddle](http://jsfiddle.net/gevgeny/LPRLs/)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
-| `title`               | `string` | The title of the chart.        | [jsfiddle](http://jsfiddle.net/gevgeny/EtpLw/)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
-| `subtitle`            | `string` | The subtitle of the chart.        | [jsfiddle](http://jsfiddle.net/gevgeny/EtpLw/)    | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
+| `type`                | `string` | The default series type for the chart.                                                            | [jsfiddle](http://jsfiddle.net/gevgeny/LPRLs/)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
+| `title`               | `string` | The title of the chart. If this option is not specified title will be empty string.               | [jsfiddle](http://jsfiddle.net/gevgeny/EtpLw/)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
+| `subtitle`            | `string` | The subtitle of the chart. If this option is not specified subtitle will be empty string.         | [jsfiddle](http://jsfiddle.net/gevgeny/EtpLw/)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
 
 
 

@@ -4,13 +4,34 @@
 
 </head>
 <body>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/highstock-release/highstock.js"></script>
+
+    <script src="../dist/ui-highcharts.js"></script>
+    <script>
+        angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) {
+            $scope.data = [{
+                name: 'Powers of two',
+                data: [0, 1, 2, 4, 8, 16, 32]
+            },{
+                name: 'Fibonacci Numbers',
+                data: [1, 1, 2, 3, 5, 8, 13, 21]
+            }];
+
+            $scope.options = {
+                tooltip: {
+                    shared: true
+                }
+            };
+
+            $scope.legendItemClick = function (series) {
+                alert(series.name);
+            };
+        });
+    </script>
     <div ng-app="myApp" ng-controller="ctrl">
         <ui-chart series="data" options="options" legend-item-click="legendItemClick(series)" />
     </div>
-    <script src="jquery.js"></script>
-    <script src="angular.js"></script>
-    <script src="highstock.src.js"></script>
-    <script src="ui-highcharts.js"></script>
-    <script src="legend-item-click.js"></script>
 </body>
 </html>

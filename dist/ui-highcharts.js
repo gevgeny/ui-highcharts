@@ -121,23 +121,16 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
     };
 }]);
 angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout', function ($timeout) {
-    var addTitle = function ($scope, $attrs) {
-        if ($attrs.title) {
-            $.extend(true, $scope.options, {
-                title: {
-                    text: $attrs.title
-                }
-            });
-        }
-    };
+    var addTitle = function ($scope, $attrs, option) {
+        var titleOptions = { };
 
-    var addSubtitle = function ($scope, $attrs) {
-        if ($attrs.subtitle) {
-            $.extend(true, $scope.options, {
-                subtitle: {
-                    text: $attrs.subtitle
-                }
-            });
+        titleOptions[option] = {};
+        $.extend(true, $scope.options, titleOptions);
+        if ($attrs[option]) {
+            $scope.options[option].text = $attrs[option];
+        }
+        if ($scope.options[option].text === undefined) {
+            $scope.options[option].text = '';
         }
     };
 
@@ -191,8 +184,6 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
         }
     };
 
-
-
     var addLegendItemClick = function ($scope, $attrs) {
         if ($attrs.legendItemClick) {
             $.extend(true, $scope.options.plotOptions, {
@@ -223,8 +214,8 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
     return function ($scope, $attrs) {
         $scope.options.plotOptions = $scope.options.plotOptions || {};
 
-        addTitle($scope, $attrs);
-        addSubtitle($scope, $attrs);
+        addTitle($scope, $attrs, 'title');
+        addTitle($scope, $attrs, 'subtitle');
         addType($scope, $attrs);
 
         // series events
