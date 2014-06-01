@@ -39,21 +39,21 @@ Add one of ui-highcharts directives to your html under the defined controller
 ui-highcharts provides 3 directives.
 
 | HTML tag      | Example | Highcharts equivalent |
-| ------------- |:-------:| ----------------------|
+| ------------- |---------| ----------------------|
 | `<ui-chart>`  | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart) | [Highcharts Demo](http://www.highcharts.com/demo) |
 | `<ui-stock-chart>` | | [Highstock Demo](http://www.highcharts.com/stock/demo) |
 | `<ui-map` |  | [Highmaps demo](http://www.highcharts.com/maps/demo) |
 
 ### Attributes
-Highcharts features provided in the directive through set of attributes.
+Highcharts features provided through set of attributes that available in each directive.
 
-| Attribute             | Type     | Description                                   | Example                                           | Highcharts equivalent |
-| ----------------------|----------|-----------------------------------------------|---------------------------------------------------|-----------------------|
-| `options`             | `object` | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined through `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
-| `series`              | `array`  | Highcharts series array. The only required attribute.                                             | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
-| `type`                | `string` | The default series type for the chart.                                                            | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/bar-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
-| `title`               | `string` | The title of the chart. If this option is not specified title will be empty string.               | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
-| `subtitle`            | `string` | The subtitle of the chart. If this option is not specified subtitle will be empty string.         | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
+| Attribute             | Type            | Description                                   | Example                                           | Highcharts equivalent |
+| ----------------------|-----------------|-----------------------------------------------|---------------------------------------------------|-----------------------|
+| `options`             | two-way binding | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
+| `series`              | two-way binding | Highcharts series array. The only required attribute.                                             | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
+| `type`                | simple string   | The default series type for the chart.                                                            | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/bar-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
+| `title`               | simple string   | The title of the chart. If this option is not specified title will be empty string.               | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
+| `subtitle`            | simple string   | The subtitle of the chart. If this option is not specified subtitle will be empty string.         | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
 
 
 
