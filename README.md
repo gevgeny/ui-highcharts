@@ -42,18 +42,35 @@ ui-highcharts provides 3 directives.
 | ------------- |---------| ----------------------|
 | `<ui-chart>`  | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart) | [Highcharts Demo](http://www.highcharts.com/demo) |
 | `<ui-stock-chart>` | | [Highstock Demo](http://www.highcharts.com/stock/demo) |
-| `<ui-map` |  | [Highmaps demo](http://www.highcharts.com/maps/demo) |
+| `<ui-map` |  | [Highmaps Demo](http://www.highcharts.com/maps/demo) |
 
 ### Attributes
 Highcharts features provided through set of attributes that available in each directive.
 
-| Attribute             | Type            | Description                                   | Example                                           | Highcharts equivalent |
-| ----------------------|-----------------|-----------------------------------------------|---------------------------------------------------|-----------------------|
-| `options`             | two-way binding | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
-| `series`              | two-way binding | Highcharts series array. The only required attribute.                                             | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
-| `type`                | simple string   | The default series type for the chart.                                                            | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/bar-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
-| `title`               | simple string   | The title of the chart. If this option is not specified title will be empty string.               | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
-| `subtitle`            | simple string   | The subtitle of the chart. If this option is not specified subtitle will be empty string.         | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
+#### Attributes with binded scope property. 
+
+| Attribute             | Description | Example | Highcharts equivalent |
+| ----------------------|-------------|---------|-----------------------|
+| `options`             | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
+| `series`              | Highcharts series array. The only required attribute. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
+
+#### Simple string attributes. 
+
+| Attribute             | Description | Example | Highcharts equivalent |
+| ----------------------|-------------|---------|-----------------------|
+| `type`                | The default series type for the chart. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/bar-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#chart.type) |
+| `title`               | The title of the chart. If this option is not specified title will be empty string. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
+| `subtitle`            | The subtitle of the chart. If this option is not specified subtitle will be empty string. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
+
+#### Events attributes. 
+
+| Attribute             | Description | Example | Highcharts equivalent |
+| ----------------------|-------------|---------|-----------------------|
+| `point-click`         | Point click event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.click) |
+| `point-select`        | Point select event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.select) |
+| `point-unselect`      | Point unselect event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.unselect) |
+| `point-mouseout`      | Point mouseout event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.mouseOut) |
+| `point-mouseover`     | Point mouseover event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.mouseOver) |
 
 
 
