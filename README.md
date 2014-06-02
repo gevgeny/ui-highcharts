@@ -18,7 +18,7 @@ angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) 
 Add one of ui-highcharts directives to your html under the defined controller
 
 ```html
-<ui-chart series="data" title="Sample Chart" subtitle="with percent values">
+<ui-chart series="data" title="Simple Chart" subtitle="with percent values">
     <tooltip>
         <span>value is {{ point.y | number:0 }}%</span>
     </tooltip>
