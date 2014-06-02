@@ -7,7 +7,7 @@ gulp.task('default', function() {
     gulp.src(['src/bootstrap.js',
         'src/addWatchers.js',
         'src/handleAttrs.js',
-        'src/interpolateFormatters.js',
+        'src/interpolate.js',
         'src/utils.js',
         'src/directive.js'
     ])

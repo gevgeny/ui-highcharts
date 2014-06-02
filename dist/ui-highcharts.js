@@ -229,39 +229,63 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
         addPointEvent($scope, $attrs, 'pointMousemove', 'mouseMove');
     };
 }]);
-angular.module('ui-highcharts').factory('$uiHighchartsInterpolateFormatters', ['$interpolate', function ($interpolate) {
+angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile', '$rootScope', function ($compile, $rootScope) {
     var applyFormatter = function (template, $scope) {
-        var childScope = $scope.$parent.$new(),
-            expression = $interpolate(template);
+        var expression = $compile(template);
 
         return function () {
-            var extendedScope = $.extend(childScope, this),
-                $html = $(expression(extendedScope));
+            var extendedScope = $.extend($scope.$parent.$new(), this),
+                html = expression(extendedScope);
+
+            $rootScope.$$phase = null;
+            extendedScope.$apply();
+
+//            if (!extendedScope.$$phase) {
+//                extendedScope.$apply();
+//            }
 
             // Highcharts formatter requires very simple html so get rid of angular generated stuff.
-            $html = $html.removeAttr('class');
-            $html.find('*').removeAttr('class');
+            //$html = $html.removeAttr('class');
+            //$html.find('*').removeAttr('class');
 
-            return $('<div></div>').append($html).html();
+            return $('<div></div>').append($(html)).html();
         };
     };
 
     var applyTooltipFormatter = function (template, $scope) {
         $.extend(true, $scope.options, {
             tooltip : {
+                useHTML : true,
                 formatter: applyFormatter(template, $scope)
             }
         });
     };
 
-    var applyXAxisLabelFormatter = function (template, $scope) {
-        $.extend(true, $scope.options, {
-            xAxis: {
-                labels: {
-                    formatter: applyFormatter(template, $scope)
-                }
+    var interpolateAxis = function ($axis, $scope, axisName) {
+        var options = { };
+
+        options[axisName] = $axis.toArray().map(function (axis) {
+            var axisOptions = { title : { }, labels : {} },
+                $axis = $(axis), $labels = $(axis).find('labels');
+
+            if ($axis.attr('title')) {
+                axisOptions.title.text = $axis.attr('title');
             }
+
+            if ($axis.attr('opposite') !== undefined && $axis.attr('opposite') !== "false") {
+                axisOptions.opposite = true;
+            }
+
+            if ($labels) {
+                axisOptions.labels.formatter = applyFormatter($labels.html(), $scope);
+            }
+            return axisOptions;
         });
+
+        if ($scope.options[axisName]) {
+            $scope.options[axisName] = Array.isArray($scope.options[axisName]) ? $scope.options[axisName] : [$scope.options[axisName]];
+        }
+        $.extend(true, $scope.options, options);
     };
 
     var applyYAxisLabelFormatter = function (template, $scope) {
@@ -276,12 +300,12 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolateFormatters', ['
 
     return function ($scope, $content) {
         var tooltipTemplate = $content.filter('tooltip').html(),
-            xAxisLabelTemplate = $content.filter('x-axis-label').html(),
-            yAxisLabelTemplate = $content.filter('y-axis-label').html();
+            $xAxis = $content.filter('x-axis'),
+            $yAxis = $content.filter('y-axis');
 
         tooltipTemplate && applyTooltipFormatter(tooltipTemplate, $scope);
-        xAxisLabelTemplate && applyXAxisLabelFormatter(xAxisLabelTemplate, $scope);
-        yAxisLabelTemplate && applyYAxisLabelFormatter(yAxisLabelTemplate, $scope);
+        $xAxis && interpolateAxis($xAxis, $scope, 'xAxis');
+        $yAxis && interpolateAxis($yAxis, $scope, 'yAxis');
     };
 }]);
 angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function () {
@@ -314,8 +338,8 @@ angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function ()
 });
 !function () {
     var createDirective = function (type) {
-        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolateFormatters', '$uiHighchartsHandleAttrs',
-            function (addWatchers, interpolateFormatters, handleAttrs) {
+        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolate', '$uiHighchartsHandleAttrs',
+            function (addWatchers, interpolate, handleAttrs) {
                 return {
                     restrict: 'EAC',
                     transclude: true,
@@ -339,7 +363,7 @@ angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function ()
                         var chart;
 
                         $scope.options = $.extend(true, $scope.options, { chart : { renderTo : $element[0] } });
-                        interpolateFormatters($scope, $transclude());
+                        interpolate($scope, $transclude());
                         handleAttrs($scope, $attrs);
                         chart = new Highcharts[type]($scope.options);
                         addWatchers(chart, $scope, $attrs);

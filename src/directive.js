@@ -1,7 +1,7 @@
 !function () {
     var createDirective = function (type) {
-        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolateFormatters', '$uiHighchartsHandleAttrs',
-            function (addWatchers, interpolateFormatters, handleAttrs) {
+        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolate', '$uiHighchartsHandleAttrs',
+            function (addWatchers, interpolate, handleAttrs) {
                 return {
                     restrict: 'EAC',
                     transclude: true,
@@ -25,7 +25,7 @@
                         var chart;
 
                         $scope.options = $.extend(true, $scope.options, { chart : { renderTo : $element[0] } });
-                        interpolateFormatters($scope, $transclude());
+                        interpolate($scope, $transclude());
                         handleAttrs($scope, $attrs);
                         chart = new Highcharts[type]($scope.options);
                         addWatchers(chart, $scope, $attrs);
