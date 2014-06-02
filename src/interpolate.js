@@ -5,7 +5,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile',
 
         return function () {
             var extendedScope = $.extend(childScore, this),
-                html = expression(extendedScope);
+                $html = $(expression(extendedScope));
 
             // Very hacky way to avoid "$digest already in progress" error.
             $rootScope.$$phase = null;
@@ -15,7 +15,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile',
             $html = $html.removeAttr('class');
             $html.find('*').removeAttr('class');
 
-            return $('<div></div>').append($(html)).html();
+            return $('<div></div>').append($html).html();
         };
     };
 

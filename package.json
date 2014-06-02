@@ -3,6 +3,7 @@
         "gulp": "3.6.2",
         "gulp-concat": "2.2.0",
         "gulp-jshint": "1.6.1",
+        "gulp-uglifyjs": "0.3.0",
         "jshint-stylish": "0.2.0"
     }
 }

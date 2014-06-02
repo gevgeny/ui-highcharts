@@ -231,24 +231,22 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
 }]);
 angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile', '$rootScope', function ($compile, $rootScope) {
     var applyFormatter = function (template, $scope) {
-        var expression = $compile(template);
+        var expression = $compile(template),
+            childScore = $scope.$parent.$new();
 
         return function () {
-            var extendedScope = $.extend($scope.$parent.$new(), this),
-                html = expression(extendedScope);
+            var extendedScope = $.extend(childScore, this),
+                $html = $(expression(extendedScope));
 
+            // Very hacky way to avoid "$digest already in progress" error.
             $rootScope.$$phase = null;
             extendedScope.$apply();
 
-//            if (!extendedScope.$$phase) {
-//                extendedScope.$apply();
-//            }
-
             // Highcharts formatter requires very simple html so get rid of angular generated stuff.
-            //$html = $html.removeAttr('class');
-            //$html.find('*').removeAttr('class');
+            $html = $html.removeAttr('class');
+            $html.find('*').removeAttr('class');
 
-            return $('<div></div>').append($(html)).html();
+            return $('<div></div>').append($html).html();
         };
     };
 
@@ -286,16 +284,6 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile',
             $scope.options[axisName] = Array.isArray($scope.options[axisName]) ? $scope.options[axisName] : [$scope.options[axisName]];
         }
         $.extend(true, $scope.options, options);
-    };
-
-    var applyYAxisLabelFormatter = function (template, $scope) {
-        $.extend(true, $scope.options, {
-            yAxis: {
-                labels: {
-                    formatter: applyFormatter(template, $scope)
-                }
-            }
-        });
     };
 
     return function ($scope, $content) {
