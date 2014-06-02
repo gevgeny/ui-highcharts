@@ -1,0 +1,9 @@
+---
+ authors:
+   - Eugene Gluhotorenko
+ resources:
+   - https://rawgit.com/gevgeny/ui-highcharts/master/samples/jquery.min.js
+   - https://rawgit.com/gevgeny/ui-highcharts/master/samples/angular.min.js
+   - https://rawgit.com/gevgeny/ui-highcharts/master/samples/highstock.js
+   - https://rawgit.com/gevgeny/ui-highcharts/master/samples/ui-highcharts.js
+ ...

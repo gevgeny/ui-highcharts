@@ -25,7 +25,7 @@ Add one of ui-highcharts directives to your html under the defined controller
 </ui-chart>
 ```
 
-[Online demo](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-example)
+[Online demo](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/get-started)
 
 ## Requirements
 
@@ -52,7 +52,7 @@ Highcharts features provided through set of attributes that available in each di
 | Attribute             | Description | Example | Highcharts equivalent |
 | ----------------------|-------------|---------|-----------------------|
 | `options`             | Highcharts options object. Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
-| `series`              | Highcharts series array. The only required attribute. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/main-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
+| `series`              | Highcharts series array. The only required attribute. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/get-started)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
 
 #### Simple string attributes. 
 
