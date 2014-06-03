@@ -76,7 +76,7 @@ Highcharts features provided through set of attributes that available in each di
 
 | Attribute             | Description | Example | Highcharts equivalent |
 | ----------------------|-------------|---------|-----------------------|
-| `options`             | Highcharts options object.</br>Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
+| `options`             | Highcharts options object.  Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
 | `series`              | Highcharts series array. The only required attribute. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/get-started)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
 
 #### Simple string attributes. 
