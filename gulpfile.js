@@ -3,8 +3,13 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglifyjs'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
-    scripts = ['src/bootstrap.js', 'src/addWatchers.js', 'src/handleAttrs.js',  'src/interpolate.js', 'src/utils.js', 'src/directive.js' ],
-    jsfiddleScripts = ['bower_components/jquery/dist/jquery.min.js', 'bower_components/angular/angular.min.js', 'bower_components/highstock-release/highstock.js', 'dist/ui-highcharts.min.js'];
+    scripts = ['src/bootstrap.js', 'src/addWatchers.js', 'src/handleAttrs.js',  'src/transclude.js', 'src/utils.js', 'src/directive.js' ],
+    jsfiddleScripts = [
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/angular/angular.min.js',
+        'bower_components/highstock-release/highstock.js',
+        'dist/ui-highcharts.min.js'
+    ];
 
 gulp.task('dev', function() {
     gulp.src(scripts)

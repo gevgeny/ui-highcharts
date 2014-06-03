@@ -1,4 +1,4 @@
-angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile', '$rootScope', function ($compile, $rootScope) {
+angular.module('ui-highcharts').factory('$uiHighchartsTransclude', ['$compile', '$rootScope', function ($compile, $rootScope) {
     var applyFormatter = function (template, $scope) {
         var expression = $compile(template),
             childScore = $scope.$parent.$new();
@@ -12,8 +12,8 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile',
             extendedScope.$apply();
 
             // Highcharts formatter requires very simple html so get rid of angular generated stuff.
-            $html = $html.removeAttr('class');
-            $html.find('*').removeAttr('class');
+            //$html = $html.removeAttr('class');
+            //$html.find('*').removeAttr('class');
 
             return $('<div></div>').append($html).html();
         };

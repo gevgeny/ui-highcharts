@@ -229,7 +229,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout',
         addPointEvent($scope, $attrs, 'pointMousemove', 'mouseMove');
     };
 }]);
-angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile', '$rootScope', function ($compile, $rootScope) {
+angular.module('ui-highcharts').factory('$uiHighchartsTransclude', ['$compile', '$rootScope', function ($compile, $rootScope) {
     var applyFormatter = function (template, $scope) {
         var expression = $compile(template),
             childScore = $scope.$parent.$new();
@@ -243,8 +243,8 @@ angular.module('ui-highcharts').factory('$uiHighchartsInterpolate', ['$compile',
             extendedScope.$apply();
 
             // Highcharts formatter requires very simple html so get rid of angular generated stuff.
-            $html = $html.removeAttr('class');
-            $html.find('*').removeAttr('class');
+            //$html = $html.removeAttr('class');
+            //$html.find('*').removeAttr('class');
 
             return $('<div></div>').append($html).html();
         };
@@ -326,8 +326,8 @@ angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function ()
 });
 !function () {
     var createDirective = function (type) {
-        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsInterpolate', '$uiHighchartsHandleAttrs',
-            function (addWatchers, interpolate, handleAttrs) {
+        return [ '$uiHighchartsAddWatchers',  '$uiHighchartsTransclude', '$uiHighchartsHandleAttrs',
+            function (addWatchers, transclude, handleAttrs) {
                 return {
                     restrict: 'EAC',
                     transclude: true,
@@ -351,7 +351,7 @@ angular.module('ui-highcharts').service('$uiHighchartsUtilsService', function ()
                         var chart;
 
                         $scope.options = $.extend(true, $scope.options, { chart : { renderTo : $element[0] } });
-                        interpolate($scope, $transclude());
+                        transclude($scope, $transclude());
                         handleAttrs($scope, $attrs);
                         chart = new Highcharts[type]($scope.options);
                         addWatchers(chart, $scope, $attrs);

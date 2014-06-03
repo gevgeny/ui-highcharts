@@ -64,10 +64,10 @@
                     <span>{{ value }} mm</span>
                 </labels>
             </y-axis>
-            <tooltip>
-                <span ng-if="series.name == 'Rainfall'">{{ x }}: {{ y }} mm</span>
-                <span ng-if="series.name == 'Temperature'">{{ x }}: {{ y }}&deg;C</span>
-                <span ng-if="series.name == 'Sunshine'"><b>{{ point.name }}</b> {{ y }}</span>
+            <tooltip use-html>
+                <span ng-show="series.name == 'Rainfall'">{{ x }}: {{ y }} mm</span>
+                <span ng-show="series.name == 'Temperature'">{{ x }}: {{ y }}&deg;C</span>
+                <span ng-show="series.name == 'Sunshine'"><b>{{ point.name }}</b> {{ y }}</span>
             </tooltip>
         </ui-chart>
     </div>
