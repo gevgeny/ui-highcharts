@@ -1,6 +1,31 @@
 #ui-highcharts
 
-ui-highcharts provides AngularJS directives to create charts based on the [Highcharts](http://www.highcharts.com/) library.
+ui-highcharts provides you simple and declarative approach to create [Highcharts](http://www.highcharts.com/) based charts with bunch of AngularJS directives.
+
+ui-highcharts allows you to transform such html
+```html
+<ui-chart series="data" options="options" title="Tokyo climate">
+  <y-axis title="Temperature">
+    <labels>
+      <span>{{ value }}&deg;C</span>
+    </labels>
+  </y-axis>
+  <y-axis opposite title="Rainfall">
+    <labels>
+      <span>{{ value }} mm</span>
+    </labels>
+  </y-axis>
+  <tooltip use-html>
+    <span ng-show="series.name == 'Rainfall'">{{ x }}: {{ y }} mm</span>
+    <span ng-show="series.name == 'Temperature'">{{ x }}: {{ y }}&deg;C</span>
+    <span ng-show="series.name == 'Sunshine'"><b>{{ point.name }}</b> {{ y }}</span>
+  </tooltip>
+</ui-chart>
+```
+into such chart 
+![alt tag](https://raw.githubusercontent.com/gevgeny/ui-highcharts/master/samples/demo/demo.png)
+
+[Online demo](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/demo)
 
 ##Usage
 
