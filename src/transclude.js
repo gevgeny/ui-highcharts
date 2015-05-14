@@ -61,7 +61,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsTransclude', ['$compile', 
             $yAxis = $content.filter('y-axis');
 
         tooltipTemplate && applyTooltipFormatter(tooltipTemplate, $scope);
-        $xAxis && interpolateAxis($xAxis, $scope, 'xAxis');
-        $yAxis && interpolateAxis($yAxis, $scope, 'yAxis');
+        if ($xAxis.length) interpolateAxis($xAxis, $scope, 'xAxis');
+        if ($yAxis.length) interpolateAxis($yAxis, $scope, 'yAxis');
     };
 }]);
