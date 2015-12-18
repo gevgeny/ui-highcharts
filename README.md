@@ -22,7 +22,7 @@ ui-highcharts allows you to transform such html
   </tooltip>
 </ui-chart>
 ```
-into such chart 
+into such chart
 ![alt tag](https://raw.githubusercontent.com/gevgeny/ui-highcharts/master/samples/demo/demo.png)
 
 [Online demo](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/demo)
@@ -72,14 +72,15 @@ ui-highcharts provides 3 directives.
 ### Attributes
 Highcharts features provided through set of attributes that available in each directive.
 
-#### Attributes with binded scope property. 
+#### Attributes with binded scope property.
 
 | Attribute             | Description | Example | Highcharts equivalent |
 | ----------------------|-------------|---------|-----------------------|
 | `options`             | Highcharts options object.<br>Note that many of its properties are available through their own attributes and series must be defined only through the `series` attribute           | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/legend-events)    | [Highcharts API ref](http://api.highcharts.com/highcharts) |
 | `series`              | Highcharts series array. The only required attribute. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/get-started)    | [Highcharts API ref](http://api.highcharts.com/highcharts#series) |
+| `chart`              | A reference to the highchart object that will be added to the parent scope | none   | [Highcharts API ref](http://api.highcharts.com/highstock#Chart) |
 
-#### Simple string attributes. 
+#### Simple string attributes.
 
 | Attribute             | Description | Example | Highcharts equivalent |
 | ----------------------|-------------|---------|-----------------------|
@@ -87,7 +88,7 @@ Highcharts features provided through set of attributes that available in each di
 | `title`               | The title of the chart. If this option is not specified title will be empty string. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)    | [Highcharts API ref](http://api.highcharts.com/highcharts#title.text) |
 | `subtitle`            | The subtitle of the chart. If this option is not specified subtitle will be empty string. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/simple-chart)                | [Highcharts API ref](http://api.highcharts.com/highcharts#subtitle.text) |
 
-#### Events attributes. 
+#### Events attributes.
 
 | Attribute             | Description | Example | Highcharts equivalent |
 | ----------------------|-------------|---------|-----------------------|
@@ -96,12 +97,3 @@ Highcharts features provided through set of attributes that available in each di
 | `point-unselect`      | Point unselect event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.unselect) |
 | `point-mouseout`      | Point mouseout event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.mouseOut) |
 | `point-mouseover`     | Point mouseover event. Passes `point` object. | [jsfiddle](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/point-events) | [Highcharts API ref](http://api.highcharts.com/highcharts#plotOptions.series.point.events.mouseOver) |
-
-
-
-
-
-
-    
-
-
