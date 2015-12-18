@@ -1,16 +1,37 @@
 angular.module('ui-highcharts', []);
-angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighchartsUtilsService', function (utils) {
+angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighchartsUtilsService', '$window', function (utils, $window) {
     /**
      * Determine which series were added to the scope and add them to the chart.
      * */
-    var addSeries = function (chart, allSeries) {
-        var seriesToAdd = utils.difference(allSeries, chart.series, function (series) { return series.name; });
+     var addSeries = function (chart, newSeries) {
+         var seriesToAdd = utils.difference(newSeries, chart.series, function (series) { return series.name; });
 
-        seriesToAdd.forEach(function (series) {
-            chart.addSeries(series, false);
-        });
-        chart.redraw();
-    };
+         seriesToAdd.forEach(function (series) {
+             chart.addSeries(series, false);
+         });
+
+         var chartSeries = chart.series.filter(function (series) { return series.name !== 'Navigator'; });
+
+         chartSeries.forEach(function(existingSerie, i) {
+             var updatedSerie = newSeries[i];
+
+             if (existingSerie.visible !== updatedSerie.visible) {
+                 existingSerie.setVisible(updatedSerie.visible, false);
+             }
+
+             if (existingSerie.yData.length !== updatedSerie.data.length) {
+                 existingSerie.setData(updatedSerie.data, false);
+             }
+
+             if (existingSerie.type !== updatedSerie.type) {
+                 existingSerie.update({
+                     type: updatedSerie.type
+                 }, false);
+             }
+         });
+
+         chart.redraw();
+     };
 
     /**
      *  Determine which series were removed from the scope and remove them from the chart.
@@ -37,18 +58,23 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
     /**
      * Adds watcher for "series.length". We don't watch series deeply by performance reasons.
      * */
-    var watchSeriesLength = function (chart, $scope) {
-        $scope.$watch('series.length', function (newLength, oldLength) {
-            if (newLength === undefined) {
-                return;
-            }
-            if ((newLength || 0) >= (oldLength || 0)) { // if some series were added to the scope
-                addSeries(chart, $scope.series);
-            } else if ((newLength || 0) < (oldLength || 0)) { // if some series were removed from the scope
-                removeSeries(chart, $scope.series);
-            }
-        });
-    };
+     var watchSeriesLength = function (chart, $scope) {
+         $scope.$watch('series', function(newSeries, oldSeries) {
+             if (newSeries === undefined) {
+                 return;
+             }
+
+             if (!oldSeries) {
+                 oldSeries = {length: 0};
+             }
+
+             if ((newSeries.length || 0) >= (oldSeries.length || 0)) { // if some series were added to the scope
+                 addSeries(chart, $scope.series);
+             } else if ((newSeries.length || 0) < (oldSeries.length || 0)) { // if some series were removed from the scope
+                 removeSeries(chart, $scope.series);
+             }
+         }, true);
+     };
 
     var watchDisabling = function (chart, $scope) {
         $scope.$watch(function () {
@@ -97,6 +123,14 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
         });
     };
 
+    var watchResize = function(chart) {
+        angular.element($window).on('resize', function() {
+            console.log('chart will reflow due to window resize event');
+            var newWidth = $window.innerWidth - 100 + 'px';
+            angular.element(chart.container).css('width', newWidth);
+        });
+    };
+
     var watchAxis = function (chart, $scope, axis) {
         var axisOptions;
         $scope.$watch('options.' + axis, function (value, oldValue) {
@@ -105,7 +139,6 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
             }
             axisOptions = Array.isArray($scope.options[axis]) ? $scope.options[axis] : [$scope.options[axis]];
             chart[axis].forEach(function (axis, i) {
-                console.log('update options', axisOptions[i]);
                 axis.update(axisOptions[i]);
             });
         }, true);
@@ -118,8 +151,10 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
         watchLoading(chart, $scope);
         watchAxis(chart, $scope, 'xAxis');
         watchAxis(chart, $scope, 'yAxis');
+        watchResize(chart);
     };
 }]);
+
 angular.module('ui-highcharts').factory('$uiHighchartsHandleAttrs', ['$timeout', function ($timeout) {
     var addTitle = function ($scope, $attrs, option) {
         var titleOptions = { };
