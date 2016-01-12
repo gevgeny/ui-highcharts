@@ -12,6 +12,7 @@
   ];
 
   /* @ngInject */
+  /* jshint -W003 */
   function highChartsManager(addWatchers, transclude, handleAttrs) {
     var service = {
       createInstance: createInstance,
@@ -19,7 +20,7 @@
 
     return service;
 
-    function createInstance(type, $element, $scope, $attrs, $transclude) {
+    function createInstance(type, $element, $scope, $attrs, $transclude) { /* jshint ignore:line */
 
       //compling options and transludes content.
       $scope.options = $.extend(true, $scope.options, { chart: { renderTo: $element[0] } });

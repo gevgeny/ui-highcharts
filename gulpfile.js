@@ -10,7 +10,7 @@ var gulp = require('gulp'),
         'src/transclude.js',
         'src/utils.js',
         'src/directive.js',
-        'src/chartManager.js',
+        'src/highChartsManager.js',
     ],
     jsfiddleScripts = [
         'bower_components/jquery/dist/jquery.min.js',
