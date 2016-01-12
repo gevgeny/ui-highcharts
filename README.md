@@ -43,11 +43,17 @@ angular.module('myApp', ['ui-highcharts']).controller('ctrl', function ($scope) 
 Add one of ui-highcharts directives to your html under the defined controller
 
 ```html
-<ui-chart series="data" title="Simple Chart" subtitle="with percent values">
+<ui-chart id="myChart" series="data" title="Simple Chart" subtitle="with percent values">
     <tooltip>
         <span>value is {{ point.y | number:0 }}%</span>
     </tooltip>
 </ui-chart>
+```
+A reference to the highchart object will be added to your scope if you provide an ID as in the example above.
+
+```javascript
+//highcharts object reference available
+$scope.myChart
 ```
 
 [Online demo](http://jsfiddle.net/gh/get/library/pure/gevgeny/ui-highcharts/tree/master/samples/get-started)
