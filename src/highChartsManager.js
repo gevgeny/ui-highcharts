@@ -30,10 +30,10 @@
       var chart = new Highcharts[type]($scope.options);
       addWatchers(chart, $scope, $attrs);
 
-      //adds chart reference to parent scope if chart attribute is provided.
-      if ($attrs.chart && $scope.$parent) {
-        if (!$scope.$parent[$attrs.chart]) {
-          $scope.$parent[$attrs.chart] = chart;
+      //adds chart reference to parent scope if id attribute is provided.
+      if ($attrs.id && $scope.$parent) {
+        if (!$scope.$parent[$attrs.id]) {
+          $scope.$parent[$attrs.id] = chart;
         } else {
           throw new Error('A HighChart object with reference ' + $attrs.chart + ' has already been initialized.');
         }
