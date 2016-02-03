@@ -18,7 +18,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
                  existingSerie.setVisible(updatedSerie.visible, false);
              }
 
-             if (existingSerie.yData.length !== updatedSerie.data.length) {
+             if (!angular.equals(existingSerie.options.data, updatedSerie.data)) {
                  existingSerie.setData(updatedSerie.data, false);
              }
 
