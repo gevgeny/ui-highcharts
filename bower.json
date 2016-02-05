@@ -1,22 +1,30 @@
 {
-    "name": "ui-highcharts",
-    "version": "0.0.1",
-    "homepage": "https://github.com/gevgeny/ui-highcharts",
-    "authors": [
-        "Eugene Gluhotorenko"
-    ],
-    "description": "Highcharts powered charts directives for Angular",
-    "main": "dist/ui-highcharts.js",
-    "keywords": [
-        "angular", "highcharts"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*", "node_modules", "bower_components", "test", "tests"
-    ],
-    "devDependencies": {
-        "jquery": "2.1.1",
-        "angular": "1.2.16",
-        "highstock-release": "v2.0.1"
-    }
+  "name": "ui-highcharts",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gevgeny/ui-highcharts",
+  "authors": [
+    "Eugene Gluhotorenko"
+  ],
+  "description": "Highcharts powered charts directives for Angular",
+  "main": "dist/ui-highcharts.js",
+  "keywords": [
+    "angular",
+    "highcharts"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "2.1.1",
+    "angular": "1.2.16",
+    "highstock-release": "v2.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.2.1"
+  }
 }
