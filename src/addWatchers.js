@@ -12,21 +12,25 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
          var chartSeries = chart.series.filter(function (series) { return series.name !== 'Navigator'; });
 
          chartSeries.forEach(function(existingSerie, i) {
-             var updatedSerie = newSeries[i];
+             var updatedSerie = _.find(newSeries, 'name', existingSerie.name);
 
-             if (existingSerie.visible !== updatedSerie.visible) {
-                 existingSerie.setVisible(updatedSerie.visible, false);
-             }
+             if (updatedSerie) {
+                 if (existingSerie.visible !== updatedSerie.visible) {
+                     existingSerie.setVisible(updatedSerie.visible, false);
+                 }
 
-             if (!angular.equals(existingSerie.options.data, updatedSerie.data)) {
-                 existingSerie.setData(updatedSerie.data, false);
-             }
+                 if (!angular.equals(existingSerie.options.data, updatedSerie.data)) {
+                     existingSerie.setData(updatedSerie.data, false);
+                 }
 
-             if (existingSerie.type !== updatedSerie.type) {
-                 existingSerie.update({
-                     type: updatedSerie.type
-                 }, false);
-             }
+                 if (existingSerie.type !== updatedSerie.type) {
+                     existingSerie.update({
+                         type: updatedSerie.type
+                     }, false);
+                 }
+            } else {
+                existingSerie.remove();
+            }
          });
 
          chart.redraw();
