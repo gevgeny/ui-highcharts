@@ -51,9 +51,10 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
     };
 
     var redraw = utils.debounce(function (chart, series) {
-        chart.series.forEach(function(chartSeries, i) {
+        var chartSeries = chart.series.filter(function (series) { return series.name !== 'Navigator'; });
+        chartSeries.forEach(function(serie, i) {
             if (series[i]) {
-                chartSeries.setData(series[i].data, false);
+                serie.setData(series[i].data, false);
             }
         });
         chart.redraw();
