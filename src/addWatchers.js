@@ -1,4 +1,18 @@
 angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighchartsUtilsService', '$window', function (utils, $window) {
+
+    /**
+     *  Update the navigator when series are added/removed to the first visible serie (as per default)
+     *  If series date interval changes, the navigator doesnt automaticly rerender with the new date interval.
+     *  Thats why we need to manually rebind the data and redraw the navigator.
+    */
+    function _redrawNavigator(chart) {
+        var navigator = _.find(chart.series, { name: 'Navigator' });
+        if (navigator) {
+            var firstVisibleSerie = _.find(chart.series, { visible: true });
+            navigator.setData(firstVisibleSerie.options.data, true);
+        }
+    }
+
     /**
      * Determine which series were added to the scope and add them to the chart.
      * */
@@ -32,7 +46,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
                 existingSerie.remove();
             }
          });
-
+         _redrawNavigator(chart);
          chart.redraw();
      };
 
@@ -46,6 +60,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
         seriesToRemove.forEach(function (series) {
             series.remove(false);
         });
+        _redrawNavigator(chart);
         chart.redraw();
     };
 
@@ -56,6 +71,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
                 serie.setData(series[i].data, false);
             }
         });
+        _redrawNavigator(chart);
         chart.redraw();
     }, 200);
 
