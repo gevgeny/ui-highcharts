@@ -8,8 +8,12 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
     function _redrawNavigator(chart) {
         var navigator = _.find(chart.series, { name: 'Navigator' });
         if (navigator) {
-            var firstVisibleSerie = _.find(chart.series, { visible: true });
-            navigator.setData(firstVisibleSerie.options.data, true);
+            var firstVisibleSerie = _.find(chart.series, function(serie) {
+                return serie.name !== 'Navigator' && serie.visible;
+            });
+            if (firstVisibleSerie) {
+                navigator.setData(firstVisibleSerie.options.data, true);
+            }
         }
     }
 
