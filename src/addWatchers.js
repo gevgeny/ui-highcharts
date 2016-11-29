@@ -30,7 +30,7 @@ angular.module('ui-highcharts').factory('$uiHighchartsAddWatchers', ['$uiHighcha
          var chartSeries = chart.series.filter(function (series) { return series.name !== 'Navigator'; });
 
          chartSeries.forEach(function(existingSerie, i) {
-             var updatedSerie = _.find(newSeries, 'name', existingSerie.name);
+             var updatedSerie = _.find(newSeries, {name: existingSerie.name});
 
              if (updatedSerie) {
                  if (existingSerie.visible !== updatedSerie.visible) {
