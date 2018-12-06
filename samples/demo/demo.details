@@ -2,5 +2,5 @@
  authors:
    - Eugene Gluhotorenko
  resources:
-   - https://rawgit.com/gevgeny/ui-highcharts/master/samples/jsfiddle-scripts.js
+   - https://cdn.jsdelivr.net/gh/gevgeny/ui-highcharts/samples/jsfiddle-scripts.js
  ...
